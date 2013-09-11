@@ -26,6 +26,14 @@ public abstract class Entity {
 		return bounds;
 	}
 
+	public float getWidth() {
+		return bounds.getWidth();
+	}
+
+	public float getHeight() {
+		return bounds.getHeight();
+	}
+
 	// POSITION
 	public float getX(){
 		return position.x;
