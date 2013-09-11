@@ -1,0 +1,18 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+/out
+/bin
+/.settings
+*.classpath
+*.project
+
+# IntelliJ Files #
+*.iml
+*.ipr
+*.iws
+*.db
+.idea/
