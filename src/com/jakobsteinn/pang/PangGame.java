@@ -7,6 +7,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import entities.Ball;
 import entities.Paddle;
 
@@ -17,23 +18,25 @@ import entities.Paddle;
  */
 public class PangGame implements ApplicationListener {
 
-	private static final int WIDTH = 1280;
+	private static final int WIDTH = 680;
 	private static final int HEIGHT = WIDTH / 16 * 9;
 
 	private Rectangle field = new Rectangle();
-	private Ball ball = new Ball(16, 16);
+	private Ball ball;
 	private Paddle paddle1 = new Paddle(32, 96);
 	private Paddle paddle2 = new Paddle(32, 96);
 	private ShapeRenderer shapeRenderer;
 
 
 	public void create() {
+		ball = new Ball(16, 16);
+		ball.setVelocity(new Vector2(200, 200));
 		field.set(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		shapeRenderer = new ShapeRenderer();
 	}
 
 	private void update(float deltaTime) {
-
+		ball.update(deltaTime);
 	}
 
 	private void draw(float deltaTime) {

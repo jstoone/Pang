@@ -1,5 +1,7 @@
 package entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -9,9 +11,13 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Ball extends Entity {
 
+	private Rectangle field;
+
 	public Ball(int width, int height) {
 		// 32x32
 		super(width, height);
+
+		field = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	public void reflect(boolean x, boolean y) {
@@ -23,5 +29,23 @@ public class Ball extends Entity {
 			vel.y *= -1;
 		}
 		setVelocity(vel);
+	}
+
+	public void update(float deltaTime) {
+		integrate(deltaTime);
+		if(!field.contains(getBounds())){
+			if(getX() < field.getX()){
+				reflect(true, false);
+			}
+			if(getX() > field.getWidth() - (getWidth() / 2)) {
+				reflect(true, false);
+			}
+			if(getY() < field.getY()) {
+				reflect(false, true);
+			}
+			if(getY() > field.getHeight() - (getWidth() / 2)) {
+				reflect(false, true);
+			}
+		}
 	}
 }
