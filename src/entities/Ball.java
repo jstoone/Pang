@@ -16,7 +16,6 @@ public class Ball extends Entity {
 	public Ball(int width, int height) {
 		// 32x32
 		super(width, height);
-
 		field = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
@@ -36,9 +35,11 @@ public class Ball extends Entity {
 		if(!field.contains(getBounds())){
 			if(getX() < field.getX()){
 				reflect(true, false);
+				reset();
 			}
 			if(getX() > field.getWidth() - (getWidth() / 2)) {
 				reflect(true, false);
+				reset();
 			}
 			if(getY() < field.getY()) {
 				reflect(false, true);

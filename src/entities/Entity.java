@@ -2,13 +2,14 @@ package entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jakobsteinn.pang.PangGame;
 
 /**
  * User: jstoone
  * Date: 9/10/13
  * Time: 8:03 PM
  */
-public abstract class Entity {
+public class Entity {
 
 	private Vector2 position = new Vector2();
 	private Vector2 velocity = new Vector2();
@@ -68,15 +69,15 @@ public abstract class Entity {
 		this.velocity = velocity;
 	}
 
-	public void move(float x, float y) {
-		position.set(x, y);
-	}
-
 	public void translate(float x, float y) {
 		position.add(x, y);
 	}
 
 	public void integrate(float deltaTime) {
 		position.add(velocity.x * deltaTime, velocity.y * deltaTime);
+	}
+
+	public void reset() {
+		position.set(PangGame.WIDTH/2, PangGame.HEIGHT/2);
 	}
 }
