@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import entities.Ball;
-import entities.Paddle;
+import com.jakobsteinn.pang.entities.Ball;
+import com.jakobsteinn.pang.entities.Paddle;
 
 /**
  * User: jstoone

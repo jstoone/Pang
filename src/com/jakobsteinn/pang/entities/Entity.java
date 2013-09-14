@@ -1,4 +1,4 @@
-package entities;
+package com.jakobsteinn.pang.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
