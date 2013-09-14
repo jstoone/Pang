@@ -63,9 +63,8 @@ public class PangGame implements ApplicationListener {
 
 			// if paddle hits the ball with the opposite velocity
 			// the ball will reflect at the velocity of the paddle
-			// (it's a little buggy tho...)
-			if((paddle2.getVelocityY() > 0 && ball.getVelocityY() < 0) ||
-			   (paddle2.getVelocityY() < 0 && ball.getVelocityY() > 0)) {
+			if((paddle1.getVelocityY() > 0 && ball.getVelocityY() < 0) ||
+			   (paddle1.getVelocityY() < 0 && ball.getVelocityY() > 0)) {
 				ball.reflect(false, true);
 			}
 		}
@@ -81,7 +80,6 @@ public class PangGame implements ApplicationListener {
 
 			// if paddle hits the ball with the opposite velocity
 			// the ball will reflect at the velocity of the paddle
-			// (it's a little buggy tho...)
 			if((paddle2.getVelocityY() > 0 && ball.getVelocityY() < 0) ||
 			   (paddle2.getVelocityY() < 0 && ball.getVelocityY() > 0)) {
 				ball.reflect(false, true);
