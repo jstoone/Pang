@@ -42,9 +42,11 @@ public class Ball extends Entity {
 				reset();
 			}
 			if(getY() < field.getY()) {
+				move(getX(), field.getY());
 				reflect(false, true);
 			}
 			if(getY() > field.getHeight() - (getWidth() / 2)) {
+				move(getX(), field.getHeight() - getHeight());
 				reflect(false, true);
 			}
 		}
