@@ -148,6 +148,7 @@ public class PangGame implements ApplicationListener {
 		cfg.width = WIDTH;
 		cfg.height = HEIGHT;
 		cfg.title = "PANG: A Pong Game";
+		cfg.useGL20 = true;
 		new LwjglApplication(new PangGame(), cfg);
 	}
 }
