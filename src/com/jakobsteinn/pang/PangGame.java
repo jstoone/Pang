@@ -122,7 +122,7 @@ public class PangGame implements ApplicationListener {
 	}
 
 	public void render() {
-		float deltaTime = Gdx.graphics.getDeltaTime();
+		float deltaTime = Gdx.graphics.getRawDeltaTime();
 		update(deltaTime);
 		draw(deltaTime);
 	}
@@ -132,6 +132,10 @@ public class PangGame implements ApplicationListener {
 	}
 
 	public void dispose() {
+		// here is the list of disposable items:
+		// http://code.google.com/p/libgdx/wiki/MemoryManagment
+		bitmapFont.dispose();
+		batch.dispose();
 	}
 
 	// not used as these are for mobile, and this game is only desktop
