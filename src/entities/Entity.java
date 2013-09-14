@@ -77,6 +77,10 @@ public class Entity {
 		position.add(velocity.x * deltaTime, velocity.y * deltaTime);
 	}
 
+	public void move(float x, float y) {
+		position.set(x, y);
+	}
+
 	public void reset() {
 		position.set(PangGame.WIDTH/2, PangGame.HEIGHT/2);
 	}
