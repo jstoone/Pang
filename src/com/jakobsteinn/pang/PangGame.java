@@ -60,6 +60,14 @@ public class PangGame implements ApplicationListener {
 			} else {
 				ball.setVelocity(ball.getVelocity().mul(0.9f));
 			}
+
+			// if paddle hits the ball with the opposite velocity
+			// the ball will reflect at the velocity of the paddle
+			// (it's a little buggy tho...)
+			if((paddle2.getVelocityY() > 0 && ball.getVelocityY() < 0) ||
+			   (paddle2.getVelocityY() < 0 && ball.getVelocityY() > 0)) {
+				ball.reflect(false, true);
+			}
 		}
 
 		if ( ball.getBounds().overlaps(paddle2.getBounds()) && ball.getVelocityX() > 0 ) {
@@ -69,6 +77,14 @@ public class PangGame implements ApplicationListener {
 				ball.setVelocity(ball.getVelocity().mul(1.01f));
 			} else {
 				ball.setVelocity(ball.getVelocity().mul(0.99f));
+			}
+
+			// if paddle hits the ball with the opposite velocity
+			// the ball will reflect at the velocity of the paddle
+			// (it's a little buggy tho...)
+			if((paddle2.getVelocityY() > 0 && ball.getVelocityY() < 0) ||
+			   (paddle2.getVelocityY() < 0 && ball.getVelocityY() > 0)) {
+				ball.reflect(false, true);
 			}
 		}
 	}
@@ -119,6 +135,7 @@ public class PangGame implements ApplicationListener {
 	}
 
 	// not used as these are for mobile, and this game is only desktop
+	// does it inherit
 	public void pause() {}
 	public void resume() {}
 
