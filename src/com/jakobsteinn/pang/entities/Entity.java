@@ -2,6 +2,7 @@ package com.jakobsteinn.pang.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jakobsteinn.pang.Level;
 import com.jakobsteinn.pang.PangGame;
 
 /**
@@ -15,9 +16,21 @@ public class Entity {
 	private Vector2 velocity = new Vector2();
 	private Rectangle bounds = new Rectangle();
 
-	protected Entity(int width, int height) {
+	protected Entity(Level level, int width, int height) {
 		bounds.setWidth(width);
 		bounds.setHeight(height);
+
+		// could make separate init() method, but
+		// this game is not going to have to
+		// async init anything.
+	}
+
+	public void update(float deltaTime) {
+
+	}
+
+	public void render() {
+
 	}
 
 	// BOUNDS
