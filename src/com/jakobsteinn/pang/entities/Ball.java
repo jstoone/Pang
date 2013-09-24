@@ -1,9 +1,11 @@
 package com.jakobsteinn.pang.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jakobsteinn.pang.Level;
+import com.jakobsteinn.pang.PangGame;
 
 /**
  * User: jstoone
@@ -12,18 +14,19 @@ import com.jakobsteinn.pang.Level;
  */
 public class Ball extends Entity {
 
+	public final float MAX_SPEED = 650f;
+	public final float REFLECTION_ANGLE_MUL = 110.0f;
 	private Rectangle field;
 	private Level level;
 
 	public Ball(Level level, int width, int height) {
-		// 32x32
 		super(level, width, height);
 		this.level = level;
 		field = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		// init properties
 		setVelocity(new Vector2(300, 150));
-
+		reset();
 	}
 
 	public void reflect(boolean x, boolean y) {
@@ -38,6 +41,7 @@ public class Ball extends Entity {
 	}
 
 	public void update(float deltaTime) {
+		super.update(deltaTime);
 		integrate(deltaTime);
 		if(!field.contains(getBounds())){
 			if(getX() < field.getX()){
@@ -57,34 +61,16 @@ public class Ball extends Entity {
 				reflect(false, true);
 			}
 		}
-
-		// check for collision for N amout of players (in this case two)
-		// i made this collision local to the ball, since it produces
-		// less code, and no dublication
-		// dublication would happen if we checked the collision
-		// in the paddle itself (reversed the collision check)
-		for(Paddle p : level.players) {
-			if(getBounds().overlaps(p.getBounds())) {
-				Gdx.app.log("Player", "overlaps");
-				reflect(true, false);
-				p.score++;
-				if(getVelocityY() * p.getVelocityY() > 0) {
-					setVelocity(getVelocity().mul(1.08f));
-				} else {
-					setVelocity(getVelocity().mul(0.9f));
-				}
-
-				// if paddle hits the ball with the opposite velocity
-				// the ball will reflect at the velocity of the paddle
-				if((p.getVelocityY() > 0 && getVelocityY() < 0) ||
-						(p.getVelocityY() < 0 && getVelocityY() > 0)) {
-					reflect(false, true);
-				}
-			}
-		}
 	}
 
 	public void render() {
 		level.shapeRenderer.rect(getX(), getY(), getWidth(), getHeight());
+	}
+
+	public void reset() {
+		setPosition(new Vector2(field.getWidth() / 2, field.getHeight() / 2));
+		float randomAng = MathUtils.random(-360, 360);
+		System.out.println(randomAng);
+		getVelocity().setAngle((float) randomAng);
 	}
 }

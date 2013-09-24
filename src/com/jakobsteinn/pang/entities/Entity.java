@@ -15,18 +15,25 @@ public class Entity {
 	private Vector2 position = new Vector2();
 	private Vector2 velocity = new Vector2();
 	private Rectangle bounds = new Rectangle();
+	private Level level;
 
 	protected Entity(Level level, int width, int height) {
 		bounds.setWidth(width);
 		bounds.setHeight(height);
+		this.level = level;
 
 		// could make separate init() method, but
 		// this game is not going to have to
 		// async init anything.
 	}
 
-	public void update(float deltaTime) {
 
+
+	public void update(float deltaTime) {
+		getBounds();
+	}
+	public void renderDebug() {
+		level.shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
 	public void render() {
@@ -46,6 +53,19 @@ public class Entity {
 
 	public float getHeight() {
 		return bounds.getHeight();
+	}
+
+	public float getTop() {
+		return bounds.getY() + bounds.getHeight();
+	}
+	public float getBottom() {
+		return bounds.getY();
+	}
+	public float getLeft() {
+		return bounds.getX() + bounds.getWidth();
+	}
+	public float getRight() {
+		return bounds.getX();
 	}
 
 	// POSITION
@@ -92,9 +112,5 @@ public class Entity {
 
 	public void move(float x, float y) {
 		position.set(x, y);
-	}
-
-	public void reset() {
-		position.set(PangGame.WIDTH/2, PangGame.HEIGHT/2);
 	}
 }

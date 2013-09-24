@@ -11,6 +11,7 @@ import com.jakobsteinn.pang.entities.Ball;
 import com.jakobsteinn.pang.entities.Paddle;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * User: jstoone
@@ -22,7 +23,7 @@ public class Level implements Screen {
 
 	public Ball ball;
 	public ArrayList<Paddle> players = new ArrayList<Paddle>();
-	public Paddle paddle1, paddle2;
+	public Random random;
 	public Rectangle field;
 	public ShapeRenderer shapeRenderer;
 	public SpriteBatch batch;
@@ -39,10 +40,13 @@ public class Level implements Screen {
 		this.batch = batch;
 		// the games field
 		field = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		// new random generator
+		random = new Random();
 
 		bitmapFont = new BitmapFont();
 
 		ball = new Ball(this, 16, 16);
+		ball.reset();
 		// adding players
 		players.add(new Paddle(this, 16, 96, 1));
 		players.add(new Paddle(this, 16, 96, 2));
@@ -86,6 +90,13 @@ public class Level implements Screen {
 		for(int i = 0; i < players.size(); i++){
 			Paddle player = players.get(i);
 			player.render();
+		}
+		shapeRenderer.end();
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+		ball.renderDebug();
+		for(int i = 0; i < players.size(); i++) {
+			Paddle player = players.get(i);
+			player.renderDebug();
 		}
 		shapeRenderer.end();
 	}

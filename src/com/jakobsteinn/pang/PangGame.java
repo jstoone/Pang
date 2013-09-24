@@ -19,7 +19,7 @@ import com.jakobsteinn.pang.entities.Paddle;
  * Time: 7:38 PM
  */
 public class PangGame implements ApplicationListener {
-
+	public static final String GAME_NAME =  "PANG: A Pong Game";
 	public static final int WIDTH = 680;
 	public static final int HEIGHT = WIDTH / 16 * 9;
 
@@ -38,6 +38,7 @@ public class PangGame implements ApplicationListener {
 
 	@Override
 	public void render() {
+		Gdx.graphics.setTitle(GAME_NAME + " | " + Gdx.graphics.getFramesPerSecond());
 		float deltaTime = Gdx.graphics.getRawDeltaTime();
 		level.render(deltaTime);
 		update(deltaTime);
@@ -80,7 +81,7 @@ public class PangGame implements ApplicationListener {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.width = WIDTH;
 		cfg.height = HEIGHT;
-		cfg.title = "PANG: A Pong Game";
+		cfg.title = GAME_NAME;
 		cfg.useGL20 = true;
 		new LwjglApplication(new PangGame(), cfg);
 	}
